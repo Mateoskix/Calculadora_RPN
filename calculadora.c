@@ -12,16 +12,45 @@ void showPila(void)
     }
 }
 
-void insertNumber(void){
+void insertNumber(int number){
+    int i = 8;
+    for (i = 8; i>0; i--){
+        if(pila[i-1] == 0){
+            pila[i-1] = number;
+            break;
+        }
+        else if(pila[0] != 0){
+            printf("No hay espacio en la calculadora\n");
+            break;
+        }
+    }
+}
+
+void deletePila(){
     int i = 0;
-    for (i = 0; i<sizeof(pila); i++){
-        printf("%d",sizeof(pila));
+    for (i = 0; i < 8; i++)
+    {
+        pila[i] = 0.0;
+    }
+}
+void deleteLast(){
+    int i = 0;
+    for (i = 0; i<8; i++){
+        if(pila[i] != 0){
+            pila[i] = 0.0;
+            break;
+        }
+        else if(pila[7] == 0){
+            printf("Ya la pila esta vacía\n");
+            break;
+        }
     }
 }
 
 int main()
 {
     int opc = 0;
+    int num = 0;
     while (opc != 5)
     {
         showPila();
@@ -31,7 +60,9 @@ int main()
         switch (opc)
         {
         case 1:
-            /* code */
+        printf("Ingresa el número:  ");
+        scanf("%d",&num);
+            insertNumber(num);
             break;
 
         case 2:
@@ -39,11 +70,11 @@ int main()
             break;
 
         case 3:
-            /* code */
+            deleteLast();
             break;
 
         case 4:
-            /* code */
+            deletePila();
             break;
 
         case 5:
