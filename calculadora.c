@@ -12,19 +12,30 @@ void showPila(void)
     }
 }
 
-void moveUp(){
+void moveUp()
+{
     int i = 0;
-    for(i= 0; i<8; i++){
-        pila[i] = pila[i+1];
+    for (i = 0; i < 8; i++)
+    {
+        pila[i] = pila[i + 1];
     }
 }
 
-void insertNumber(int number){
-    moveUp();
-    pila[7] = number;
+void insertNumber(int number)
+{
+    if (pila[0] == 0)
+    {
+        moveUp();
+        pila[7] = number;
+    }
+    else
+    {
+        printf("La calculadora esta llena!\n");
+    }
 }
 
-void deletePila(){
+void deletePila()
+{
     int i = 0;
     for (i = 0; i < 8; i++)
     {
@@ -32,19 +43,72 @@ void deletePila(){
     }
 }
 
-void moveDown(){
+void moveDown()
+{
     int i = 7;
-    for(i= 7; i>=0; i--){
-        pila[i] = pila[i-1];
+    for (i = 7; i >= 0; i--)
+    {
+        pila[i] = pila[i - 1];
     }
 }
 
-void deleteLast(){
+void deleteLast()
+{
     pila[7] = 0.0;
     moveDown();
 }
 
+void menuOp()
+{
+    char temp;
+    printf("Ingresa que operación deseas realizar: \n +,-,/,*,r(raiz cuadrada),s(seno),c(coseno),t(tangente),p(potencia)\n");
+    scanf(" %c", &temp);
+    switch (temp)
+    {
+    case '+':
+        pila[6] = pila[7]+pila[6];
+        deleteLast(); 
+        break;
 
+    case '-':
+        pila[6] = pila[6]-pila[7];
+        deleteLast();
+        break;
+
+    case '/':
+        pila[6] = pila[6]/pila[7];
+        deleteLast();
+        break;
+
+    case '*':
+        pila[6] = pila[6]*pila[7];
+        deleteLast();
+        break;
+
+    case 'r':
+        pila[7] = sqrt(pila[7]);
+        break;
+
+    case 's':
+        
+        break;
+
+    case 'c':
+        
+        break;
+
+    case 't':
+        
+        break;
+
+    case 'p':
+        
+        break;
+    
+    default:
+        break;
+    }
+}
 
 int main()
 {
@@ -59,13 +123,13 @@ int main()
         switch (opc)
         {
         case 1:
-        printf("Ingresa el número:  ");
-        scanf("%d",&num);
+            printf("Ingresa el número:  ");
+            scanf("%d", &num);
             insertNumber(num);
             break;
 
         case 2:
-            /* code */
+            menuOp();
             break;
 
         case 3:
