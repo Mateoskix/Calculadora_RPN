@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#define PI 3.1415926;
+
 float pila[8];
 
 void showPila(void)
@@ -63,25 +65,26 @@ void menuOp()
     char temp;
     printf("Ingresa que operación deseas realizar: \n +,-,/,*,r(raiz cuadrada),s(seno),c(coseno),t(tangente),p(potencia)\n");
     scanf(" %c", &temp);
+    float aux = pila[7] * PI;
     switch (temp)
     {
     case '+':
-        pila[6] = pila[7]+pila[6];
-        deleteLast(); 
+        pila[6] = pila[7] + pila[6];
+        deleteLast();
         break;
 
     case '-':
-        pila[6] = pila[6]-pila[7];
+        pila[6] = pila[6] - pila[7];
         deleteLast();
         break;
 
     case '/':
-        pila[6] = pila[6]/pila[7];
+        pila[6] = pila[6] / pila[7];
         deleteLast();
         break;
 
     case '*':
-        pila[6] = pila[6]*pila[7];
+        pila[6] = pila[6] * pila[7];
         deleteLast();
         break;
 
@@ -90,21 +93,28 @@ void menuOp()
         break;
 
     case 's':
-        
+        pila[7] = sin((aux/180));
         break;
 
     case 'c':
-        
+        pila[7] = cos((aux/180));
         break;
 
     case 't':
-        
+        if(remainder(pila[7],90) != 0){
+        pila[7] = tan((aux/180));
+        break;
+        }
+        else{
+            printf("MATH.ERROR\n");
+        }
         break;
 
     case 'p':
-        
+        pila[6] = pow(pila[6],pila[7]);
+        deleteLast();
         break;
-    
+
     default:
         break;
     }
