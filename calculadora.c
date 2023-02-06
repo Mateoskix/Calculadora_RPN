@@ -12,18 +12,16 @@ void showPila(void)
     }
 }
 
-void insertNumber(int number){
-    int i = 8;
-    for (i = 8; i>0; i--){
-        if(pila[i-1] == 0){
-            pila[i-1] = number;
-            break;
-        }
-        else if(pila[0] != 0){
-            printf("No hay espacio en la calculadora\n");
-            break;
-        }
+void moveUp(){
+    int i = 0;
+    for(i= 0; i<8; i++){
+        pila[i] = pila[i+1];
     }
+}
+
+void insertNumber(int number){
+    moveUp();
+    pila[7] = number;
 }
 
 void deletePila(){
@@ -33,19 +31,20 @@ void deletePila(){
         pila[i] = 0.0;
     }
 }
-void deleteLast(){
-    int i = 0;
-    for (i = 0; i<8; i++){
-        if(pila[i] != 0){
-            pila[i] = 0.0;
-            break;
-        }
-        else if(pila[7] == 0){
-            printf("Ya la pila esta vacía\n");
-            break;
-        }
+
+void moveDown(){
+    int i = 7;
+    for(i= 7; i>=0; i--){
+        pila[i] = pila[i-1];
     }
 }
+
+void deleteLast(){
+    pila[7] = 0.0;
+    moveDown();
+}
+
+
 
 int main()
 {
