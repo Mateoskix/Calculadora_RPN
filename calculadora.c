@@ -101,7 +101,7 @@ void menuOp()
         break;
 
     case 't':
-        if(remainder(pila[7],90) != 0){
+        if(remainder(pila[7],90) != 0 || remainder(pila[7],180) == 0){
         pila[7] = tan((aux/180));
         break;
         }
